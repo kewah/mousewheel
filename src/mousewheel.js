@@ -39,7 +39,8 @@ module.exports.bind = function (el, callback, capture) {
     if (support === 'mousewheel') {
       // Webkit also support wheelDeltaX
       if(e.wheelDeltaX) event.deltaX = - 1/5 * e.wheelDeltaX;
-      event.deltaY = - 1/5 * e.wheelDeltaY;
+      if(e.wheelDelta) event.deltaY = (e.wheelDelta > 0) ? -5 : 5;
+      if(e.wheelDeltaY) event.deltaY = - 1/5 * e.wheelDeltaY;
     } else {
       event.deltaY = e.detail;
     }
